@@ -5,14 +5,24 @@ import 'package:flutter/material.dart';
 class NovoProjeto extends StatelessWidget {
   get dao => ProjetoDAO();
 
-  var nomeProjeto = "";
-  var descricaoProjeto = "";
+  String title;
+  bool editing;
+  int projetoId;
+  String nomeProjeto;
+  String descricaoProjeto;
+
+  NovoProjeto(
+      {this.title,
+      this.editing,
+      this.projetoId,
+      this.nomeProjeto,
+      this.descricaoProjeto});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Novo Projeto'),
+          title: Text(title),
           leading: IconButton(
             icon: Icon(Icons.close),
             onPressed: () {
@@ -24,8 +34,13 @@ class NovoProjeto extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.save),
               onPressed: () async {
-                int rowsAffected = await dao.create(
-                    Projeto(nome: nomeProjeto, descricao: descricaoProjeto));
+                int rowsAffected = editing
+                    ? await dao.update(Projeto(
+                        projetoId: projetoId,
+                        nome: nomeProjeto,
+                        descricao: descricaoProjeto))
+                    : await dao.create(Projeto(
+                        nome: nomeProjeto, descricao: descricaoProjeto));
                 if (rowsAffected >= 1) {
                   showDialog(
                       context: context,
@@ -79,6 +94,9 @@ class NovoProjeto extends StatelessWidget {
                 onChanged: (String text) {
                   nomeProjeto = text;
                 },
+                controller: TextEditingController(
+                  text: nomeProjeto
+                ),
               ),
               SizedBox(height: 8),
               TextField(
@@ -91,6 +109,9 @@ class NovoProjeto extends StatelessWidget {
                 onChanged: (String text) {
                   descricaoProjeto = text;
                 },
+                controller: TextEditingController(
+                  text: descricaoProjeto
+                ),
               ),
             ],
           ),

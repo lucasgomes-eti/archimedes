@@ -12,9 +12,26 @@ class ProjetoDAO {
     });
   }
 
-  readAll() {}
+  Future<List<Projeto>> readAll() async {
+    return await database.then((Database db) async {
+      var res = await db.query("projeto");
+      List<Projeto> list =
+          res.isNotEmpty ? res.map((p) => Projeto.fromJson(p)).toList() : [];
+      return list;
+    });
+  }
 
-  update(Projeto newProjeto) {}
+  Future<int> update(Projeto newProjeto) async {
+    return database.then((Database db) async {
+      var res = await db.update("projeto", newProjeto.toJson(),
+          where: "projetoId = ?", whereArgs: [newProjeto.projetoId]);
+      return res;
+    });
+  }
 
-  delete(int projetoId) {}
+  delete(int projetoId) async {
+    await database.then((Database db) {
+      db.delete("projeto", where: "projetoId = ?", whereArgs: [projetoId]);
+    });
+  }
 }
