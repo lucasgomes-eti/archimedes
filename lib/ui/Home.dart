@@ -1,3 +1,4 @@
+import 'package:archimedes/ui/NovoProjeto.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,12 +11,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _counter = 0;
+  var _text = "";
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  void _getText() {
+    setState(() async {});
   }
 
   @override
@@ -27,33 +26,15 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-            Card(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  InkWell(
-                    child: SizedBox(
-                      height: 240,
-                    ),
-                    onTap: (){},
-                  )
-                ],
-              ),
-            )
-          ],
+          children: <Widget>[Text(_text)],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => NovoProjeto()));
+        },
+        tooltip: 'Criar Projeto',
         child: Icon(Icons.add),
       ),
     );

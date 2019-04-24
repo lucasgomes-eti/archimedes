@@ -12,10 +12,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
-        primarySwatch: Colors.purple,
-        accentColor: Colors.purpleAccent
+        primarySwatch: Colors.pink,
+        accentColor: Colors.white
       ),
-      home: HomePage(title: ''),
+      home: HomePage(title: 'Projetos'),
     );
   }
 }
