@@ -1,6 +1,7 @@
 import 'package:archimedes/dao/ProjetoDAO.dart';
 import 'package:archimedes/model/Projeto.dart';
 import 'package:archimedes/ui/NovoProjeto.dart';
+import 'package:archimedes/ui/ProjetoMenu.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -33,62 +34,46 @@ class _HomePageState extends State<HomePage> {
                     var projeto = snapshot.data[index];
                     return Dismissible(
                       key: UniqueKey(),
-                      background: Container(
-                        color: Colors.red,
-                        child: Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(Icons.delete),
-                              Expanded(
-                                child: SizedBox(),
-                              ),
-                              Icon(Icons.delete)
-                            ],
-                          ),
-                        ),
-                      ),
+                      background: Container(color: Colors.red),
                       onDismissed: (direction) async {
                         await dao.delete(projeto.projetoId);
                       },
                       child: ListTile(
                         title: Text(projeto.nome),
                         subtitle: Text(projeto.descricao),
-                        trailing: Icon(
-                          Icons.arrow_forward_ios,
-                          size: 18,
+                        trailing: GestureDetector(
+                          child: Container(
+                            width: 48,
+                            height: 48,
+                            child: Tooltip(
+                              message: 'Editar',
+                              child: Icon(
+                                Icons.edit,
+                                size: 20,
+                              ),
+                            ),
+                          ),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => NovoProjeto(
+                                          editing: true,
+                                          title: projeto.nome,
+                                          projetoId: projeto.projetoId,
+                                          nomeProjeto: projeto.nome,
+                                          descricaoProjeto: projeto.descricao,
+                                        )));
+                          },
                         ),
-                        onLongPress: () {
-                          showBottomSheet(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    ListTile(
-                                      leading: Icon(Icons.edit),
-                                      title: Text('Editar'),
-                                      onTap: () {
-                                        Navigator.pop(context);
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    NovoProjeto(
-                                                      editing: true,
-                                                      title: projeto.nome,
-                                                      projetoId:
-                                                          projeto.projetoId,
-                                                      nomeProjeto: projeto.nome,
-                                                      descricaoProjeto:
-                                                          projeto.descricao,
-                                                    )));
-                                      },
-                                    )
-                                  ],
-                                );
-                              });
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ProjetoMenu(
+                                        title: projeto.nome,
+                                        projetoId: projeto.projetoId,
+                                      )));
                         },
                       ),
                     );
@@ -113,11 +98,10 @@ class _HomePageState extends State<HomePage> {
               context,
               MaterialPageRoute(
                   builder: (context) => NovoProjeto(
-                        title: 'Novo Projeto',
-                        editing: false,
-                        nomeProjeto: "",
-                        descricaoProjeto: ""
-                      )));
+                      title: 'Novo Projeto',
+                      editing: false,
+                      nomeProjeto: "",
+                      descricaoProjeto: "")));
         },
         tooltip: 'Criar Projeto',
         child: Icon(Icons.add),
