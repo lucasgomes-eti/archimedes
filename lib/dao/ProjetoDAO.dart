@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:archimedes/db/Database.dart';
 import 'package:archimedes/model/Projeto.dart';
 import 'package:sqflite/sqflite.dart';

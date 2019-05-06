@@ -3,7 +3,7 @@ import 'package:archimedes/model/VisaoProduto.dart';
 import 'package:flutter/material.dart';
 
 class VisaoProdutoPage extends StatefulWidget {
-  int projetoId;
+  final int projetoId;
 
   VisaoProdutoPage({Key key, this.projetoId}) : super(key: key);
 
@@ -146,7 +146,6 @@ class _VisaoProdutoPageState extends State<VisaoProdutoPage> {
 
     if (rowsAffected >= 1) {
       showDialog(
-          barrierDismissible: false,
           context: context,
           builder: (BuildContext buildContext) {
             return AlertDialog(
@@ -155,7 +154,6 @@ class _VisaoProdutoPageState extends State<VisaoProdutoPage> {
                 FlatButton(
                   child: Text('OK'),
                   onPressed: () {
-                    Navigator.pop(context);
                     Navigator.pop(context);
                   },
                 )

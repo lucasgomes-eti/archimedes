@@ -3,9 +3,9 @@ import 'package:archimedes/model/Projeto.dart';
 import 'package:flutter/material.dart';
 
 class NovoProjeto extends StatefulWidget {
-  String title;
-  bool editing;
-  int projetoId;
+  final String title;
+  final bool editing;
+  final int projetoId;
   String nomeProjeto;
   String descricaoProjeto;
 
