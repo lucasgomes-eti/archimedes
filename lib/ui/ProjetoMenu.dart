@@ -1,4 +1,5 @@
 import 'package:archimedes/ui/ENaoEFazNaoFazPage.dart';
+import 'package:archimedes/ui/ObjetivoCaracteriscaPage.dart';
 import 'package:flutter/material.dart';
 
 import 'VisaoProdutoPage.dart';
@@ -72,7 +73,13 @@ class ProjetoMenu extends StatelessWidget {
                     style: Theme.of(context).textTheme.title,
                   )),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              ObjetivoCaracteriscaPage(projetoId: projetoId)));
+                },
               ),
             ),
             Card(

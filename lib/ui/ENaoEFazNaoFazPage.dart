@@ -3,6 +3,9 @@ import 'package:archimedes/dao/ENaoEFazNaoFaz/ProdutoFazDAO.dart';
 import 'package:archimedes/dao/ENaoEFazNaoFaz/ProdutoNaoEDAO.dart';
 import 'package:archimedes/dao/ENaoEFazNaoFaz/ProdutoNaoFazDAO.dart';
 import 'package:archimedes/model/produto_e_nao_e_faz_nao_faz/ProdutoE.dart';
+import 'package:archimedes/model/produto_e_nao_e_faz_nao_faz/ProdutoFaz.dart';
+import 'package:archimedes/model/produto_e_nao_e_faz_nao_faz/ProdutoNaoE.dart';
+import 'package:archimedes/model/produto_e_nao_e_faz_nao_faz/ProdutoNaoFaz.dart';
 import 'package:flutter/material.dart';
 
 class ENaoEFazNaoFazPage extends StatefulWidget {
@@ -89,6 +92,184 @@ class _ENaoEFazNaoFazState extends State<ENaoEFazNaoFazPage>
         });
   }
 
+  void _salvarProdutoNaoE() async {
+    await produtoNaoEDAO.create(ProdutoNaoE(
+        projetoId: widget.projetoId, produtoNaoE: editingControllerNaoE.text));
+    editingControllerNaoE.text = '';
+  }
+
+  void _updateProdutoNaoE(ProdutoNaoE newProdutoNaoE) async {
+    await produtoNaoEDAO.update(newProdutoNaoE);
+    editingControllerNaoE.text = '';
+  }
+
+  void _showDialogProdutoNaoE([int produtoNaoEId, String text]) {
+    editingControllerNaoE.text = text;
+    showDialog(
+        context: context,
+        builder: (BuildContext buildContext) {
+          return AlertDialog(
+            title: Text('O que o produto não é?'),
+            content: TextField(
+              autofocus: true,
+              controller: editingControllerNaoE,
+              onEditingComplete: () {
+                if (produtoNaoEId == null) {
+                  _salvarProdutoNaoE();
+                } else {
+                  _updateProdutoNaoE(ProdutoNaoE(
+                      produtoNaoEId: produtoNaoEId,
+                      projetoId: widget.projetoId,
+                      produtoNaoE: editingControllerNaoE.text));
+                }
+                Navigator.pop(context);
+              },
+            ),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('Cancelar'),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              FlatButton(
+                child: Text('Adicionar'),
+                onPressed: () {
+                  if (produtoNaoEId == null) {
+                    _salvarProdutoNaoE();
+                  } else {
+                    _updateProdutoNaoE(ProdutoNaoE(
+                        produtoNaoEId: produtoNaoEId,
+                        projetoId: widget.projetoId,
+                        produtoNaoE: editingControllerNaoE.text));
+                  }
+                  Navigator.pop(context);
+                },
+              )
+            ],
+          );
+        });
+  }
+
+  void _salvarProdutoFaz() async {
+    await produtoFazDAO.create(ProdutoFaz(
+        projetoId: widget.projetoId, produtoFaz: editingControllerFaz.text));
+    editingControllerFaz.text = '';
+  }
+
+  void _updateProdutoFaz(ProdutoFaz newProdutoFaz) async {
+    await produtoFazDAO.update(newProdutoFaz);
+    editingControllerFaz.text = '';
+  }
+
+  void _showDialogProdutoFaz([int produtoFazId, String text]) {
+    editingControllerFaz.text = text;
+    showDialog(
+        context: context,
+        builder: (BuildContext buildContext) {
+          return AlertDialog(
+            title: Text('O que o produto faz?'),
+            content: TextField(
+              autofocus: true,
+              controller: editingControllerFaz,
+              onEditingComplete: () {
+                if (produtoFazId == null) {
+                  _salvarProdutoFaz();
+                } else {
+                  _updateProdutoFaz(ProdutoFaz(
+                      produtoFazId: produtoFazId,
+                      projetoId: widget.projetoId,
+                      produtoFaz: editingControllerFaz.text));
+                }
+                Navigator.pop(context);
+              },
+            ),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('Cancelar'),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              FlatButton(
+                child: Text('Adicionar'),
+                onPressed: () {
+                  if (produtoFazId == null) {
+                    _salvarProdutoFaz();
+                  } else {
+                    _updateProdutoFaz(ProdutoFaz(
+                        produtoFazId: produtoFazId,
+                        projetoId: widget.projetoId,
+                        produtoFaz: editingControllerFaz.text));
+                  }
+                  Navigator.pop(context);
+                },
+              )
+            ],
+          );
+        });
+  }
+
+  void _salvarProdutoNaoFaz() async {
+    await produtoNaoFazDAO.create(ProdutoNaoFaz(
+        projetoId: widget.projetoId,
+        produtoNaoFaz: editingControllerNaoFaz.text));
+    editingControllerNaoFaz.text = '';
+  }
+
+  void _updateProdutoNaoFaz(ProdutoNaoFaz newProdutoNaoFaz) async {
+    await produtoNaoFazDAO.update(newProdutoNaoFaz);
+    editingControllerNaoFaz.text = '';
+  }
+
+  void _showDialogProdutoNaoFaz([int produtoNaoFazId, String text]) {
+    editingControllerNaoFaz.text = text;
+    showDialog(
+        context: context,
+        builder: (BuildContext buildContext) {
+          return AlertDialog(
+            title: Text('O que o produto não faz?'),
+            content: TextField(
+              autofocus: true,
+              controller: editingControllerNaoFaz,
+              onEditingComplete: () {
+                if (produtoNaoFazId == null) {
+                  _salvarProdutoNaoFaz();
+                } else {
+                  _updateProdutoNaoFaz(ProdutoNaoFaz(
+                      produtoNaoFazId: produtoNaoFazId,
+                      projetoId: widget.projetoId,
+                      produtoNaoFaz: editingControllerNaoFaz.text));
+                }
+                Navigator.pop(context);
+              },
+            ),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('Cancelar'),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              FlatButton(
+                child: Text('Adicionar'),
+                onPressed: () {
+                  if (produtoNaoFazId == null) {
+                    _salvarProdutoNaoFaz();
+                  } else {
+                    _updateProdutoNaoFaz(ProdutoNaoFaz(
+                        produtoNaoFazId: produtoNaoFazId,
+                        projetoId: widget.projetoId,
+                        produtoNaoFaz: editingControllerNaoFaz.text));
+                  }
+                  Navigator.pop(context);
+                },
+              )
+            ],
+          );
+        });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -138,6 +319,7 @@ class _ENaoEFazNaoFazState extends State<ENaoEFazNaoFazPage>
       body: TabBarView(
         controller: _controller,
         children: <Widget>[
+          // Produto É List
           FutureBuilder<List<ProdutoE>>(
               future: produtoEDAO.readAll(),
               builder: (BuildContext context,
@@ -147,18 +329,18 @@ class _ENaoEFazNaoFazState extends State<ENaoEFazNaoFazPage>
                     return ListView.builder(
                       itemCount: snapshot.data.length,
                       itemBuilder: (BuildContext context, int index) {
-                        var produtoE = snapshot.data[index];
+                        var item = snapshot.data[index];
                         return Dismissible(
                           key: UniqueKey(),
                           background: Container(color: Colors.red),
                           onDismissed: (direction) async {
-                            await produtoEDAO.delete(produtoE.produtoEId);
+                            await produtoEDAO.delete(item.produtoEId);
                           },
                           child: ListTile(
-                            title: Text(produtoE.produtoE),
+                            title: Text(item.produtoE),
                             onTap: () {
                               _showDialogProdutoE(
-                                  produtoE.produtoEId, produtoE.produtoE);
+                                  item.produtoEId, item.produtoE);
                             },
                           ),
                         );
@@ -177,9 +359,126 @@ class _ENaoEFazNaoFazState extends State<ENaoEFazNaoFazPage>
                   return Center(child: CircularProgressIndicator());
                 }
               }),
-          Container(color: Colors.pink),
-          Container(color: Colors.blue),
-          Container(color: Colors.green),
+          //Produto Não é List
+          FutureBuilder<List<ProdutoNaoE>>(
+              future: produtoNaoEDAO.readAll(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<List<ProdutoNaoE>> snapshot) {
+                if (snapshot.hasData) {
+                  if (snapshot.data.isNotEmpty) {
+                    return ListView.builder(
+                      itemCount: snapshot.data.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        var item = snapshot.data[index];
+                        return Dismissible(
+                          key: UniqueKey(),
+                          background: Container(color: Colors.red),
+                          onDismissed: (direction) async {
+                            await produtoNaoEDAO.delete(item.produtoNaoEId);
+                          },
+                          child: ListTile(
+                            title: Text(item.produtoNaoE),
+                            onTap: () {
+                              _showDialogProdutoNaoE(
+                                  item.produtoNaoEId, item.produtoNaoE);
+                            },
+                          ),
+                        );
+                      },
+                    );
+                  } else {
+                    return Center(
+                      child: Text(
+                        'Lista vazia =/',
+                        style: Theme.of(context).textTheme.display1,
+                        textAlign: TextAlign.center,
+                      ),
+                    );
+                  }
+                } else {
+                  return Center(child: CircularProgressIndicator());
+                }
+              }),
+          //Produto Faz List
+          FutureBuilder<List<ProdutoFaz>>(
+              future: produtoFazDAO.readAll(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<List<ProdutoFaz>> snapshot) {
+                if (snapshot.hasData) {
+                  if (snapshot.data.isNotEmpty) {
+                    return ListView.builder(
+                      itemCount: snapshot.data.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        var item = snapshot.data[index];
+                        return Dismissible(
+                          key: UniqueKey(),
+                          background: Container(color: Colors.red),
+                          onDismissed: (direction) async {
+                            await produtoFazDAO.delete(item.produtoFazId);
+                          },
+                          child: ListTile(
+                            title: Text(item.produtoFaz),
+                            onTap: () {
+                              _showDialogProdutoFaz(
+                                  item.produtoFazId, item.produtoFaz);
+                            },
+                          ),
+                        );
+                      },
+                    );
+                  } else {
+                    return Center(
+                      child: Text(
+                        'Lista vazia =/',
+                        style: Theme.of(context).textTheme.display1,
+                        textAlign: TextAlign.center,
+                      ),
+                    );
+                  }
+                } else {
+                  return Center(child: CircularProgressIndicator());
+                }
+              }),
+          //Produto Não Faz List
+          FutureBuilder<List<ProdutoNaoFaz>>(
+              future: produtoNaoFazDAO.readAll(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<List<ProdutoNaoFaz>> snapshot) {
+                if (snapshot.hasData) {
+                  if (snapshot.data.isNotEmpty) {
+                    return ListView.builder(
+                      itemCount: snapshot.data.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        var item = snapshot.data[index];
+                        return Dismissible(
+                          key: UniqueKey(),
+                          background: Container(color: Colors.red),
+                          onDismissed: (direction) async {
+                            await produtoNaoFazDAO.delete(item.produtoNaoFazId);
+                          },
+                          child: ListTile(
+                            title: Text(item.produtoNaoFaz),
+                            onTap: () {
+                              _showDialogProdutoNaoFaz(
+                                  item.produtoNaoFazId, item.produtoNaoFaz);
+                            },
+                          ),
+                        );
+                      },
+                    );
+                  } else {
+                    return Center(
+                      child: Text(
+                        'Lista vazia =/',
+                        style: Theme.of(context).textTheme.display1,
+                        textAlign: TextAlign.center,
+                      ),
+                    );
+                  }
+                } else {
+                  return Center(child: CircularProgressIndicator());
+                }
+              }),
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -190,67 +489,25 @@ class _ENaoEFazNaoFazState extends State<ENaoEFazNaoFazPage>
             case 0:
               {
                 //É
-
+                _showDialogProdutoE();
                 break;
               }
             case 1:
               {
                 //Não É
-                _showDialogProdutoE();
+                _showDialogProdutoNaoE();
                 break;
               }
             case 2:
               {
                 //Faz
-                showDialog(
-                    context: context,
-                    builder: (BuildContext buildContext) {
-                      return AlertDialog(
-                        title: Text('O que o produto faz?'),
-                        content: TextField(
-                          controller: editingControllerFaz,
-                        ),
-                        actions: <Widget>[
-                          FlatButton(
-                            child: Text('Cancelar'),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                          FlatButton(
-                            child: Text('Adicionar'),
-                            onPressed: () {},
-                          )
-                        ],
-                      );
-                    });
+                _showDialogProdutoFaz();
                 break;
               }
             case 3:
               {
                 //Não Faz
-                showDialog(
-                    context: context,
-                    builder: (BuildContext buildContext) {
-                      return AlertDialog(
-                        title: Text('O que o produto não faz?'),
-                        content: TextField(
-                          controller: editingControllerNaoFaz,
-                        ),
-                        actions: <Widget>[
-                          FlatButton(
-                            child: Text('Cancelar'),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                          FlatButton(
-                            child: Text('Adicionar'),
-                            onPressed: () {},
-                          )
-                        ],
-                      );
-                    });
+                _showDialogProdutoNaoFaz();
                 break;
               }
           }
