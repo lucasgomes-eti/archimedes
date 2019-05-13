@@ -1,5 +1,6 @@
 import 'package:archimedes/dao/PersonaDAO.dart';
 import 'package:archimedes/model/persona/Persona.dart';
+import 'package:archimedes/ui/PersonaMenuPage.dart';
 import 'package:flutter/material.dart';
 
 class PersonasPage extends StatefulWidget {
@@ -121,13 +122,12 @@ class _PersonasPageState extends State<PersonasPage> {
                           },
                         ),
                         onTap: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => ProjetoMenu(
-                          //               title: projeto.nome,
-                          //               projetoId: projeto.projetoId,
-                          //             )));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PersonaMenuPage(
+                                        persona: item,
+                                      )));
                         },
                       ),
                     );
