@@ -1,4 +1,5 @@
 import 'package:archimedes/model/persona/Persona.dart';
+import 'package:archimedes/ui/TipoPersonaPage.dart';
 import 'package:flutter/material.dart';
 
 class PersonaMenuPage extends StatelessWidget {
@@ -29,11 +30,11 @@ class PersonaMenuPage extends StatelessWidget {
                   )),
                 ),
                 onTap: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) =>
-                  //             VisaoProdutoPage(projetoId: projetoId)));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              TipoPersonaPage(personaId: persona.personaId)));
                 },
               ),
             ),

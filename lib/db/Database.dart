@@ -102,20 +102,6 @@ class DBProvider {
       );
       ''');
       await db.execute('''
-      CREATE TABLE "tipoPersona" (
-      "tipoPersonaId" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-      "personaId" INTEGER,
-      CONSTRAINT "fk_tipoPersona" FOREIGN KEY ("personaId") REFERENCES "persona" ("personaId")
-      );
-      ''');
-      await db.execute('''
-      CREATE TABLE "mapaEmpatia" (
-      "mapaEmpatiaId" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-      "personaId" INTEGER,
-      CONSTRAINT "fk_mapaEmpatia" FOREIGN KEY ("personaId") REFERENCES "persona" ("personaId")
-      );
-      ''');
-      await db.execute('''
       CREATE TABLE "jornada" (
       "jornadaId" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
       "personaId" INTEGER,
@@ -126,57 +112,57 @@ class DBProvider {
       await db.execute('''
       CREATE TABLE "penso" (
       "pensoId" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-      "mapaEmpatiaId" INTEGER,
+      "personaId" INTEGER,
       "penso" TEXT,
-      CONSTRAINT "fk_penso" FOREIGN KEY ("mapaEmpatiaId") REFERENCES "mapaEmpatia" ("mapaEmpatiaId")
+      CONSTRAINT "fk_penso" FOREIGN KEY ("personaId") REFERENCES "persona" ("personaId")
       );
       ''');
       await db.execute('''
       CREATE TABLE "ouco" (
       "oucoId" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-      "mapaEmpatiaId" INTEGER,
+      "personaId" INTEGER,
       "ouco" TEXT,
-      CONSTRAINT "fk_ouco" FOREIGN KEY ("mapaEmpatiaId") REFERENCES "mapaEmpatia" ("mapaEmpatiaId")
+      CONSTRAINT "fk_ouco" FOREIGN KEY ("personaId") REFERENCES "persona" ("personaId")
       );
       ''');
       await db.execute('''
       CREATE TABLE "falo" (
       "faloId" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-      "mapaEmpatiaId" INTEGER,
+      "personaId" INTEGER,
       "falo" TEXT,
-      CONSTRAINT "fk_falo" FOREIGN KEY ("mapaEmpatiaId") REFERENCES "mapaEmpatia" ("mapaEmpatiaId")
+      CONSTRAINT "fk_falo" FOREIGN KEY ("personaId") REFERENCES "persona" ("personaId")
       );
       ''');
       await db.execute('''
       CREATE TABLE "vejo" (
       "vejoId" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-      "mapaEmpatiaId" INTEGER,
+      "personaId" INTEGER,
       "vejo" TEXT,
-      CONSTRAINT "fk_vejo" FOREIGN KEY ("mapaEmpatiaId") REFERENCES "mapaEmpatia" ("mapaEmpatiaId")
+      CONSTRAINT "fk_vejo" FOREIGN KEY ("personaId") REFERENCES "persona" ("personaId")
       );
       ''');
       await db.execute('''
       CREATE TABLE "comportamento" (
       "comportamentoId" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-      "tipoPersonaId" INTEGER,
+      "personaId" INTEGER,
       "comportamento" TEXT,
-      CONSTRAINT "fk_comportamento" FOREIGN KEY ("tipoPersonaId") REFERENCES "tipoPersona" ("tipoPersonaId")
+      CONSTRAINT "fk_comportamento" FOREIGN KEY ("personaId") REFERENCES "persona" ("personaId")
       );
       ''');
       await db.execute('''
       CREATE TABLE "perfil" (
       "perfilId" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-      "tipoPersonaId" INTEGER,
+      "personaId" INTEGER,
       "perfil" TEXT,
-      CONSTRAINT "fk_perfil" FOREIGN KEY ("tipoPersonaId") REFERENCES "tipoPersona" ("tipoPersonaId")
+      CONSTRAINT "fk_perfil" FOREIGN KEY ("personaId") REFERENCES "persona" ("personaId")
       );
       ''');
       await db.execute('''
       CREATE TABLE "necessidade" (
       "necessidadeId" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-      "tipoPersonaId" INTEGER,
+      "personaId" INTEGER,
       "necessidade" TEXT,
-      CONSTRAINT "fk_necessidade" FOREIGN KEY ("tipoPersonaId") REFERENCES "tipoPersona" ("tipoPersonaId")
+      CONSTRAINT "fk_necessidade" FOREIGN KEY ("personaId") REFERENCES "persona" ("personaId")
       );
       ''');
       await db.execute('''
