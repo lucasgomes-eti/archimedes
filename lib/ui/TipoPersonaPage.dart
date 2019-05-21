@@ -395,6 +395,7 @@ class _TipoPersonaState extends State<TipoPersonaPage>
               {
                 //Necessidades
                 _showDialogNecessidade();
+                break;
               }
           }
         },
