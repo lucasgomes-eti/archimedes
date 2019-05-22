@@ -8,10 +8,10 @@ class PersonasPage extends StatefulWidget {
   PersonasPage({Key key, this.projetoId}) : super(key: key);
 
   @override
-  _PersonasPageState createState() => _PersonasPageState();
+  createState() => _PersonasState();
 }
 
-class _PersonasPageState extends State<PersonasPage> {
+class _PersonasState extends State<PersonasPage> {
   final dao = PersonaDAO();
 
   TextEditingController editingControllerNome;

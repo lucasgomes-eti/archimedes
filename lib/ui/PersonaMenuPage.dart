@@ -1,4 +1,6 @@
 import 'package:archimedes/model/persona/Persona.dart';
+import 'package:archimedes/ui/JornadaPage.dart';
+import 'package:archimedes/ui/MapaEmpatiaPage.dart';
 import 'package:archimedes/ui/TipoPersonaPage.dart';
 import 'package:flutter/material.dart';
 
@@ -50,12 +52,12 @@ class PersonaMenuPage extends StatelessWidget {
                   )),
                 ),
                 onTap: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) =>
-                  //           ENaoEFazNaoFazPage(projetoId: projetoId),
-                  //     ));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            MapaEmpatiaPage(personaId: persona.personaId),
+                      ));
                 },
               ),
             ),
@@ -71,11 +73,11 @@ class PersonaMenuPage extends StatelessWidget {
                   )),
                 ),
                 onTap: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) =>
-                  //             ObjetivoCaracteriscaPage(projetoId: projetoId)));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              JornadaPage(personaId: persona.personaId)));
                 },
               ),
             )
