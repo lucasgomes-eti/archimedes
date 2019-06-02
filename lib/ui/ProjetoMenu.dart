@@ -1,4 +1,5 @@
 import 'package:archimedes/ui/ENaoEFazNaoFazPage.dart';
+import 'package:archimedes/ui/FuncionalidadesPage.dart';
 import 'package:archimedes/ui/ObjetivoCaracteriscaPage.dart';
 import 'package:archimedes/ui/PersonasPage.dart';
 import 'package:flutter/material.dart';
@@ -114,7 +115,13 @@ class ProjetoMenu extends StatelessWidget {
                     style: Theme.of(context).textTheme.title,
                   )),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              FuncionalidadesPage(projetoId: projetoId)));
+                },
               ),
             )
           ],
