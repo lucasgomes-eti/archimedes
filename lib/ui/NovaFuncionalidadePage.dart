@@ -1,6 +1,5 @@
 import 'package:archimedes/dao/FuncionalidadeDAO.dart';
 import 'package:archimedes/model/Funcionalidade.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class NovaFuncionalidadePage extends StatefulWidget {
@@ -37,17 +36,15 @@ class _NovaFuncionalidadeState extends State<NovaFuncionalidadePage> {
         ? nivelToValue(widget.funcionalidade.entendimentoNegocio)
         : 0;
 
-    _certezaTecnicaGroupValue = widget.editing
-        ? nivelToValue(widget.funcionalidade.certezaTecnica)
-        : 0;
+    _certezaTecnicaGroupValue =
+        widget.editing ? nivelToValue(widget.funcionalidade.certezaTecnica) : 0;
 
     _esforcoDevGroupValue = widget.editing
         ? nivelToValue(widget.funcionalidade.esforcoDesenvolvimento)
         : 0;
 
-    _valorNegocioGroupValue = widget.editing
-        ? nivelToValue(widget.funcionalidade.valorNegocio)
-        : 0;
+    _valorNegocioGroupValue =
+        widget.editing ? nivelToValue(widget.funcionalidade.valorNegocio) : 0;
 
     editingControllerTempo.text =
         widget.editing ? widget.funcionalidade.tempoDesenvolvimento : null;
@@ -169,7 +166,8 @@ class _NovaFuncionalidadeState extends State<NovaFuncionalidadePage> {
             )
           ],
         ),
-        body: Padding(
+        body: SingleChildScrollView(
+            child: Padding(
           padding: EdgeInsets.all(16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -324,6 +322,6 @@ class _NovaFuncionalidadeState extends State<NovaFuncionalidadePage> {
               )
             ],
           ),
-        ));
+        )));
   }
 }

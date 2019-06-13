@@ -198,10 +198,7 @@ class _VisaoProdutoPageState extends State<VisaoProdutoPage> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Text(
-                  'A visão do produto ajuda a trilhar o caminho inicial. Ela define a essência do seu valor de negócio e deve refletir uma mensagem clara e convincente para seus clientes.',
-                  style: Theme.of(context).textTheme.subhead),
-              SizedBox(height: 24),
+              SizedBox(height: 16),
               TextField(
                 textInputAction: TextInputAction.next,
                 autofocus: false,

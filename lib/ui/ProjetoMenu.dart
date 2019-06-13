@@ -1,3 +1,4 @@
+import 'package:archimedes/ui/CanvasPage.dart';
 import 'package:archimedes/ui/ENaoEFazNaoFazPage.dart';
 import 'package:archimedes/ui/FuncionalidadesPage.dart';
 import 'package:archimedes/ui/ObjetivoCaracteriscaPage.dart';
@@ -15,7 +16,9 @@ class ProjetoMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text(title)),
+        appBar: AppBar(
+          title: Text(title),
+        ),
         body: GridView.count(
           crossAxisCount: 2,
           childAspectRatio: 1,
